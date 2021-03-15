@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/nytsletter/static/css/main.a643e801.chunk.css",
-    "main.js": "/nytsletter/static/js/main.c7cff379.chunk.js",
-    "main.js.map": "/nytsletter/static/js/main.c7cff379.chunk.js.map",
+    "main.css": "/nytsletter/static/css/main.cd55e042.chunk.css",
+    "main.js": "/nytsletter/static/js/main.f3fe9e5f.chunk.js",
+    "main.js.map": "/nytsletter/static/js/main.f3fe9e5f.chunk.js.map",
     "runtime-main.js": "/nytsletter/static/js/runtime-main.d57e4107.js",
     "runtime-main.js.map": "/nytsletter/static/js/runtime-main.d57e4107.js.map",
-    "static/js/2.4e68cfcc.chunk.js": "/nytsletter/static/js/2.4e68cfcc.chunk.js",
-    "static/js/2.4e68cfcc.chunk.js.map": "/nytsletter/static/js/2.4e68cfcc.chunk.js.map",
+    "static/js/2.1ca35f38.chunk.js": "/nytsletter/static/js/2.1ca35f38.chunk.js",
+    "static/js/2.1ca35f38.chunk.js.map": "/nytsletter/static/js/2.1ca35f38.chunk.js.map",
     "index.html": "/nytsletter/index.html",
-    "static/css/main.a643e801.chunk.css.map": "/nytsletter/static/css/main.a643e801.chunk.css.map",
-    "static/js/2.4e68cfcc.chunk.js.LICENSE.txt": "/nytsletter/static/js/2.4e68cfcc.chunk.js.LICENSE.txt"
+    "static/css/main.cd55e042.chunk.css.map": "/nytsletter/static/css/main.cd55e042.chunk.css.map",
+    "static/js/2.1ca35f38.chunk.js.LICENSE.txt": "/nytsletter/static/js/2.1ca35f38.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d57e4107.js",
-    "static/js/2.4e68cfcc.chunk.js",
-    "static/css/main.a643e801.chunk.css",
-    "static/js/main.c7cff379.chunk.js"
+    "static/js/2.1ca35f38.chunk.js",
+    "static/css/main.cd55e042.chunk.css",
+    "static/js/main.f3fe9e5f.chunk.js"
   ]
 }

@@ -17,6 +17,10 @@
   cursor: pointer;
 }
 
+.NewsSectionPicker-section-selected {
+  color: var(--primary-color);
+}
+
 .NewsSectionPicker-small {
   display: flex;
   justify-content: center;

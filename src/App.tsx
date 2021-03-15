@@ -59,6 +59,7 @@ function App() {
         <NewsSecionPicker
           mode={newsSectionPickerMode}
           sections={sections}
+          selectedSection={selectedSection}
           setSelectedSection={setSelectedSection}
         ></NewsSecionPicker>
       </header>

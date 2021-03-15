@@ -60,9 +60,10 @@ export const NewsFeed: React.FC<NewsFeedProps> = ({
   // * Update the observed node on ref change
   const onRefChange: (node?: Element | null) => void = useCallback(
     (node?: Element | null) => {
+      if (rawNews.length < batchSize) return;
       setObservedElementRef.current(node);
     },
-    [setObservedElementRef]
+    [setObservedElementRef, rawNews.length]
   );
 
   // * Update the observed node after every render
@@ -98,6 +99,8 @@ export const NewsFeed: React.FC<NewsFeedProps> = ({
           if (data.results) {
             setRawNews((rawNewsItems) => [...rawNewsItems, ...data.results]);
             batchOffset.current += 20;
+          } else {
+            batchOffset.current = 500;
           }
         })
         .catch((err) => {

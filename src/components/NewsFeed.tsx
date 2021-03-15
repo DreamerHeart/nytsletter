@@ -6,7 +6,7 @@ import useSingleIntersectionObserver from "../hooks/useObserveSingleIntersection
 import { LoadingSpinner } from "./LoadingSpinner";
 import clsx from "clsx";
 
-import "./styles/NewsFeed.scss";
+import styles from "./styles/NewsFeed.module.scss";
 
 interface NewsFeedProps {
   apiEndpointUrl: string;
@@ -33,14 +33,20 @@ export const NewsFeed: React.FC<NewsFeedProps> = ({
   section,
   topMargin,
 }) => {
-  const [news, setNews] = useState<NewsItemRaw[]>([]);
+  const [rawNews, setRawNews] = useState<NewsItemRaw[]>([]);
+
   const batchOffset = useRef<number>(0);
 
-  // The ref is used to prevent loading an extra batch of data,
-  // when the component is re-rendered after the LoadingSpinner gets unmounted
+  // * Used to conditionally render the LoadingSpinner
   const [isLoading, setIsLoading] = useState(false);
+
+  // * The ref is used to prevent loading an extra batch of data
+  // when the component is re-rendered after the LoadingSpinner gets mounted.
+  // Rerendering causes onRefChange callback to set observed element to the last NewsItem
+  // (the same one that already triggered the intersection event before mounting the LoadingSpinner)
   const isLoadingRef = useRef(false);
 
+  // * Passing undefined as the first argument to use the default value of options parameter
   const [setObservedElementRef] = useSingleIntersectionObserver(
     undefined,
     () => {
@@ -48,35 +54,36 @@ export const NewsFeed: React.FC<NewsFeedProps> = ({
     }
   );
 
+  // * Initialized to empty function, gets the real value in useEffect (see below)
   const loadBatch = useRef(() => {});
 
-  // Update the observed node on ref change
+  // * Update the observed node on ref change
   const onRefChange: (node?: Element | null) => void = useCallback(
     (node?: Element | null) => {
-      setObservedElementRef(node);
+      setObservedElementRef.current(node);
     },
     [setObservedElementRef]
   );
 
-  // Update the observed node after every render
+  // * Update the observed node after every render
   // useEffect(() => {
   //   refToLastNewsItem.current = document.querySelector(".NewsItem-container:last-child");
   //   setObservedElementRef.current(refToLastNewsItem.current);
   // }
 
-  // When either of these deps [apiEndpointUrl, apiKey, source, section] is changed:
-  // - clear the NewsFeed and reset the offset to 0
+  // When either of the deps [apiEndpointUrl, apiKey, source, section] is changed:
+  // - clear the NewsFeed and reset the offset value to 0
   // - recreate loadBatch() function and store its ref
   // - call loadBatch() function
-  // loadBatch function:
-  // - returns immideately, if isLoadingRef is already true or if batchOffset.current >= maxBatchOffset
+  // loadBatch() function:
+  // - returns immideately, if isLoadingRef already equals 'true' or if batchOffset.current >= maxBatchOffset
   // - sets isLoading state and isLoadingRef to true
   // - fetches a batch of rawNewsItems
   // - adds the fetched data to the existing news[]
   // - in case of HTTP error, calls loadBatch again in 10 seconds
   // - sets isLoading state and isLoadingRef back to false
   useEffect(() => {
-    setNews([]);
+    setRawNews([]);
     batchOffset.current = 0;
 
     loadBatch.current = () => {
@@ -89,7 +96,7 @@ export const NewsFeed: React.FC<NewsFeedProps> = ({
         )
         .then(({ data }) => {
           if (data.results) {
-            setNews((rawNewsItems) => [...rawNewsItems, ...data.results]);
+            setRawNews((rawNewsItems) => [...rawNewsItems, ...data.results]);
             batchOffset.current += 20;
           }
         })
@@ -98,9 +105,10 @@ export const NewsFeed: React.FC<NewsFeedProps> = ({
             console.log(
               "The API server responed with an error, retrying in 10 sec."
             );
+            //TODO: limit the number of retries
             setTimeout(loadBatch.current, 10000);
           }
-          console.log(err);
+          //TODO: alert the user, that something has gone wrong
         })
         .finally(() => {
           setIsLoading(false);
@@ -113,9 +121,12 @@ export const NewsFeed: React.FC<NewsFeedProps> = ({
 
   return (
     <section
-      className={clsx("NewsFeed", topMargin === "large" && "NewsFeed-shift")}
+      className={clsx(
+        styles["NewsFeed"],
+        topMargin === "large" && styles["NewsFeed-shift"]
+      )}
     >
-      {news.map(
+      {rawNews.map(
         (
           item: {
             title: string;
@@ -126,7 +137,7 @@ export const NewsFeed: React.FC<NewsFeedProps> = ({
           index
         ) => (
           <NewsItem
-            aRef={index === news.length - 1 ? onRefChange : undefined}
+            aRef={index === rawNews.length - 1 ? onRefChange : undefined}
             key={uuidv4()}
             title={item.title}
             url={item.url}

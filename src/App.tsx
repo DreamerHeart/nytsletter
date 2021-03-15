@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { NewsFeed } from "./components/NewsFeed";
-
-import "./App.scss";
-import { NewsSecionPicker } from "./components/NewsSecionPicker";
-import { useVerticalScrollListener } from "./hooks/useVerticalScrollListener";
 import axios from "axios";
 import ScrollToTop from "react-scroll-up";
+
+import { NewsFeed } from "./components/NewsFeed";
+import { NewsSecionPicker } from "./components/NewsSecionPicker";
+import { useVerticalScrollListener } from "./hooks/useVerticalScrollListener";
+
+import "./styles/App.scss";
 
 const API_ENDPOINT_URL = process.env.REACT_APP_NYT_API_ENDPOINT_URL || "";
 const API_KEY = process.env.REACT_APP_NYT_API_KEY || "";
 const SOURCE = "nyt";
+const DEFAULT_SECTION = "all";
 
 function App() {
   const [newsSectionPickerMode, setNewsSectionPickerMode] = useState<
@@ -18,26 +20,31 @@ function App() {
   useVerticalScrollListener(
     document,
     100,
-    (n) => setNewsSectionPickerMode("small" as const),
-    (n) => setNewsSectionPickerMode("large" as const)
+    (_) => setNewsSectionPickerMode("small" as const),
+    (_) => setNewsSectionPickerMode("large" as const)
   );
 
   const [sections, setSections] = useState<
     { section: string; display_name: string }[]
   >([]);
-  const [selectedSection, setSelectedSection] = useState("all");
 
+  const [selectedSection, setSelectedSection] = useState(DEFAULT_SECTION);
+
+  // On app initial load, get the section list.
   useEffect(() => {
     axios
       .get(`${API_ENDPOINT_URL}/section-list.json?api-key=${API_KEY}`)
       .then(({ data }) => {
         let results: { section: string; display_name: string }[] = data.results;
         results = results.map((s) => {
+          // Section names, received from the API can contain whitespaces and special characters (like '&')
+          // => escaping them with a built-in encodeURIComponent() method
           return {
             section: encodeURIComponent(s.section),
             display_name: s.display_name,
           };
         });
+        // Add the missing "all" section to the resulting array and strip out the "admin" section
         setSections([
           { section: "all", display_name: "All" },
           ...Array.from(results).filter((s) => s.section !== "admin"),

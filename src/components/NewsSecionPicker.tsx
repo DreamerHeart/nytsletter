@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/NewsSectionPicker.scss";
+import styles from "./styles/NewsSectionPicker.module.scss";
 
 interface Section {
   section: string;
@@ -24,12 +24,12 @@ export const NewsSecionPicker: React.FC<NewsSecionPickerProps> = ({
   };
 
   return (
-    <nav className="NewsSectionPicker-container">
+    <nav className={styles["NewsSectionPicker-container"]}>
       {mode === "large" && (
-        <ul className="NewsSectionPicker-large">
+        <ul className={styles["NewsSectionPicker-large"]}>
           {sections.map((s) => (
             <li
-              className="NewsSectionPicker-section"
+              className={styles["NewsSectionPicker-section"]}
               key={s.section}
               onClick={() => {
                 setSelectedSection(s.section);
@@ -41,12 +41,12 @@ export const NewsSecionPicker: React.FC<NewsSecionPickerProps> = ({
         </ul>
       )}
       {mode === "large" && (
-        <div className="NewsSectionPicker-small">
+        <div className={styles["NewsSectionPicker-small"]}>
           <div className="select">
             <select onChange={handleChangeSelectedSecton}>
               {sections.map((s) => (
                 <option
-                  className="NewsSectionPicker-section"
+                  className={styles["NewsSectionPicker-section"]}
                   key={s.section}
                   value={s.section}
                 >

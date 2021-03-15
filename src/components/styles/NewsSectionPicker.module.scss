@@ -1,3 +1,6 @@
+@import "../../styles/App.scss";
+@import "../../styles/colors.scss";
+
 .NewsSectionPicker-large {
   -moz-column-count: 5;
   column-count: 5;
@@ -10,7 +13,7 @@
   white-space: nowrap;
 }
 .NewsSectionPicker-large li:hover {
-  color: #cd3339;
+  color: var(--primary-color);
   cursor: pointer;
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/NewsItem.scss";
+import styles from "./styles/NewsItem.module.scss";
 
 interface NewsItemProps {
   aRef: ((node?: Element | null | undefined) => void) | undefined;
@@ -9,18 +9,19 @@ interface NewsItemProps {
   publishedDate: Date;
 }
 
-class NewsItem extends React.Component<NewsItemProps> {
+// The use of PureComponent reduces the number or unnecessary rerenders
+class NewsItem extends React.PureComponent<NewsItemProps> {
   render() {
     return (
-      <article ref={this.props.aRef} className={"NewsItem-container"}>
-        <a className="NewsItem-clickable" href={this.props.url}>
+      <article ref={this.props.aRef} className={styles["NewsItem-container"]}>
+        <a className={styles["NewsItem-clickable"]} href={this.props.url}>
           <img
-            className="NewsItem-image"
+            className={styles["NewsItem-image"]}
             src={this.props.thumbnailStandard}
             alt=""
           ></img>
-          <div className="NewsItem-text">
-            <span className="NewsItem-publication-datetime">
+          <div className={styles["NewsItem-text"]}>
+            <span className={styles["NewsItem-publication-datetime"]}>
               {this.props.publishedDate.toLocaleString("ru-RU")}
             </span>{" "}
             - {this.props.title}

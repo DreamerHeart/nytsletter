@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/nytsletter/static/css/main.fabb6d86.chunk.css",
-    "main.js": "/nytsletter/static/js/main.ed8643fb.chunk.js",
-    "main.js.map": "/nytsletter/static/js/main.ed8643fb.chunk.js.map",
+    "main.js": "/nytsletter/static/js/main.91efadd6.chunk.js",
+    "main.js.map": "/nytsletter/static/js/main.91efadd6.chunk.js.map",
     "runtime-main.js": "/nytsletter/static/js/runtime-main.d57e4107.js",
     "runtime-main.js.map": "/nytsletter/static/js/runtime-main.d57e4107.js.map",
     "static/js/2.7ead3fe8.chunk.js": "/nytsletter/static/js/2.7ead3fe8.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.d57e4107.js",
     "static/js/2.7ead3fe8.chunk.js",
     "static/css/main.fabb6d86.chunk.css",
-    "static/js/main.ed8643fb.chunk.js"
+    "static/js/main.91efadd6.chunk.js"
   ]
 }

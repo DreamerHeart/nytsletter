@@ -1,0 +1,34 @@
+.App-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+.App-title {
+  font-family: "Holtwood One SC", serif;
+  text-transform: uppercase;
+}
+
+.App-main {
+  margin-top: 96px;
+  margin-bottom: 33px;
+}
+
+.App-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: right;
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 868px) {
+  .App-title {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+}

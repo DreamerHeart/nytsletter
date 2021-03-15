@@ -1,0 +1,13 @@
+.NewsFeed {
+  margin-top: 128px;
+}
+
+.NewsFeed-shift {
+  margin-top: 300px;
+}
+
+@media (max-width: 868px) {
+  .NewsFeed-shift {
+    margin-top: 128px;
+  }
+}

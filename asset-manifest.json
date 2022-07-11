@@ -1,20 +1,13 @@
 {
   "files": {
-    "main.css": "/nytsletter/static/css/main.cd55e042.chunk.css",
-    "main.js": "/nytsletter/static/js/main.f3fe9e5f.chunk.js",
-    "main.js.map": "/nytsletter/static/js/main.f3fe9e5f.chunk.js.map",
-    "runtime-main.js": "/nytsletter/static/js/runtime-main.d57e4107.js",
-    "runtime-main.js.map": "/nytsletter/static/js/runtime-main.d57e4107.js.map",
-    "static/js/2.1ca35f38.chunk.js": "/nytsletter/static/js/2.1ca35f38.chunk.js",
-    "static/js/2.1ca35f38.chunk.js.map": "/nytsletter/static/js/2.1ca35f38.chunk.js.map",
+    "main.css": "/nytsletter/static/css/main.74fdc160.css",
+    "main.js": "/nytsletter/static/js/main.0e7e335c.js",
     "index.html": "/nytsletter/index.html",
-    "static/css/main.cd55e042.chunk.css.map": "/nytsletter/static/css/main.cd55e042.chunk.css.map",
-    "static/js/2.1ca35f38.chunk.js.LICENSE.txt": "/nytsletter/static/js/2.1ca35f38.chunk.js.LICENSE.txt"
+    "main.74fdc160.css.map": "/nytsletter/static/css/main.74fdc160.css.map",
+    "main.0e7e335c.js.map": "/nytsletter/static/js/main.0e7e335c.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.d57e4107.js",
-    "static/js/2.1ca35f38.chunk.js",
-    "static/css/main.cd55e042.chunk.css",
-    "static/js/main.f3fe9e5f.chunk.js"
+    "static/css/main.74fdc160.css",
+    "static/js/main.0e7e335c.js"
   ]
 }

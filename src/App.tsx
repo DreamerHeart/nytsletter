@@ -73,13 +73,7 @@ function App() {
         ></NewsFeed>
       </main>
       <footer className="App-footer">
-        <ScrollToTop showUnder={160}>
-          <img
-            className="App-scroll-up-icon"
-            src={process.env.PUBLIC_URL + "/img/scroll-up-icon.png"}
-            alt="Scroll up"
-          ></img>
-        </ScrollToTop>
+        <ScrollToTop showUnder={160}/>
         <img
           src={process.env.PUBLIC_URL + "/img/poweredby_nytimes_150a.png"}
           alt="Data provided by The New York Times"
